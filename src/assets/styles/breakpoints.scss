@@ -1,0 +1,7 @@
+$mobile-max: 425px;
+
+$laptop-min: 1024px;
+
+$tablet-min: $mobile-max + 1;
+$tablet-max: $laptop-min - 1;
+
