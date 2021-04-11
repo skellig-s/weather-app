@@ -1,0 +1,64 @@
+@import 'colors';
+
+.card {
+  &__wrapper {
+    padding: 16px;
+    width: 200px;
+    height: 300px;
+    border-radius: 6px;
+    //background: $white;
+    //background: url("/assets/images/pexels-photo-1885810.jpeg") no-repeat center;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    margin: 16px;
+    box-shadow: 6px 6px 4px 0 rgb($black, 0.2);
+    transition: all .2s;
+    cursor: pointer;
+
+    &:hover {
+      box-shadow: 8px 8px 4px 0 rgb(27 27 27 / 30%);
+      transform: translateY(-2px);
+    }
+  }
+
+  &__description {
+    color: $white;
+    position: absolute;
+    bottom: 10px;
+    backdrop-filter: contrast(.3);
+    padding: 6px 10px;
+    background-color: rgb($white, 0.2);
+    border-radius: 6px;
+    font-size: 20px;
+
+    &__title {
+      font-size: 18px;
+    }
+
+    &__row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    &__icon {
+      width: 28px;
+      margin-left: 6px;
+    }
+
+    &__wind {
+      display: flex;
+      align-items: center;
+
+      &__unit {
+        font-size: 12px;
+      }
+    }
+
+    &__weather-conditions {
+
+    }
+  }
+}
