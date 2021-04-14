@@ -1,4 +1,17 @@
+export interface OneCallResponse {
+  hourly: IForecast[];
+}
+
+export interface IForecast {
+  dt: number;
+  temp: number;
+  weather: IWeather;
+  wind_speed: number;
+}
+
 export interface ICityWeather {
+  coord: ICoord;
+  name: string;
   main: IMainWeather;
   weather: IWeather[];
   wind: IWind;
@@ -17,6 +30,10 @@ export interface IWind {
   speed: number;
   deg: number;
 }
+export interface ICoord {
+  lat: number;
+  lon: number;
+}
 
 export interface IWeather {
   id: number;
@@ -24,30 +41,3 @@ export interface IWeather {
   description: string;
   icon: string;
 }
-
-// {
-//   coord: {
-//   lon: 11.5755,
-//     lat: 48.1374
-// },
-//
-//   base: 'stations',
-//
-//   visibility: 1500,
-//
-//   clouds: {
-//   all: 95
-// },
-//   dt: 1618164097,
-//   sys: {
-//   type: 1,
-//     id: 1307,
-//     country: 'DE',
-//     sunrise: 1618115492,
-//     sunset: 1618163847
-// },
-//   timezone: 7200,
-//   id: 2867714,
-//   name: 'Munich',
-//   cod: 200
-// }

@@ -1,0 +1,13 @@
+<div class="weather-conditions__row">
+  <div class="weather-conditions__title">{{ info }}</div>
+  <img *ngIf="weatherIcon"
+       class="weather-conditions__icon"
+       [src]="weatherIconAddress"
+       alt="weather icon"/>
+</div>
+<section>
+  <div class="weather-conditions__temperature">{{ temperature | temperature }}</div>
+  <div class="weather-conditions__wind">
+    {{ wind.toFixed(2) }}&nbsp;<span class="weather-conditions__wind__unit"><sup>m</sup>&frasl;<sub>s</sub></span>
+  </div>
+</section>

@@ -1,0 +1,25 @@
+.weather-conditions {
+
+  &__title {
+    font-size: 18px;
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+  }
+
+  &__icon {
+    width: 28px;
+    margin-left: 6px;
+  }
+
+  &__wind {
+    display: flex;
+    align-items: center;
+
+    &__unit {
+      font-size: 12px;
+    }
+  }
+}

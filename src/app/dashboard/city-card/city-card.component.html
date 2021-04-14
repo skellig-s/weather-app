@@ -1,19 +1,16 @@
-<div class="card__wrapper" [style.background-image]="'url(/assets/images/cities/' + cityName + '.jpeg)'">
-  <ng-container *ngIf="cityInfo$ | async as city">
+<ng-container *ngIf="cityInfo$ | async as city">
+  <div class="card__wrapper"
+       [style.background-image]="'url(/assets/images/cities/' + cityName + '.jpeg)'"
+       [routerLink]="[{ outlets: { forecastInfo: ['forecast', city.coord.lat, city.coord.lon] } }]"
+       routerLinkActive="card__wrapper--active"
+  >
     <div class="card__description">
-      <div class="card__description__row">
-        <div class="card__description__title">{{ cityName }}</div>
-        <img class="card__description__icon"
-             alt="city.weather[0].main"
-             [src]="getWeatherIcon(city.weather[0].icon)"
-        />
-      </div>
-      <section class="card__description__weather-conditions">
-        <div class="card__description__temperature">{{ city.main.temp | temperature }}</div>
-        <div class="card__description__wind">
-          {{ city.wind.speed.toFixed(2) }}&nbsp;<span class="card__description__wind__unit"><sup>m</sup>&frasl;<sub>s</sub></span>
-        </div>
-      </section>
+      <wa-weather-conditions
+        [info]="cityName"
+        [weatherIcon]="city.weather[0].icon"
+        [temperature]="city.main.temp"
+        [wind]="city.wind.speed"
+      ></wa-weather-conditions>
     </div>
-  </ng-container>
-</div>
+  </div>
+</ng-container>

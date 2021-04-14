@@ -1,0 +1,12 @@
+<div class="forecast__wrapper">
+  {{ isLoading }}
+  <div *ngFor="let conditions of (hourlyForecast$ | async)"
+       class="forecast__entity">
+    <wa-weather-conditions
+      [info]="getInfo(conditions.dt)"
+      [weatherIcon]="conditions.weather[0].icon"
+      [temperature]="conditions.temp"
+      [wind]="conditions.wind_speed"
+    ></wa-weather-conditions>
+  </div>
+</div>

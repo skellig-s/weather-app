@@ -4,7 +4,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 const routes: Routes = [
   {
-    path: '', component: DashboardComponent
+    path: '', component: DashboardComponent,
+  },
+  {
+    path: 'forecast',
+    outlet: 'forecastInfo',
+    loadChildren: () => import('./forecast/forecast.module').then(m => m.ForecastModule)
   }
 ];
 
