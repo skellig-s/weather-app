@@ -13,4 +13,8 @@ export class WeatherConditionsComponent {
   public get weatherIconAddress(): string {
     return `https://openweathermap.org/img/wn/${this.conditions.weatherIcon}.png`;
   }
+
+  public get windSpeed(): string {
+    return this.conditions.wind.toFixed(2);
+  }
 }

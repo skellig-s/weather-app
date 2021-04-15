@@ -1,5 +1,4 @@
 <div class="forecast__wrapper">
-  {{ isLoading }}
   <div *ngFor="let conditions of (hourlyForecast$ | async)"
        class="forecast__entity">
     <wa-weather-conditions
