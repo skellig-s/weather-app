@@ -1,6 +1,6 @@
 <ng-container *ngIf="cityInfo$ | async as city">
   <div class="card__wrapper"
-       [style.background-image]="'url(/assets/images/cities/' + cityName + '.jpeg)'"
+       [style.background-image]="backgroundUrl"
        [routerLink]="[{ outlets: { forecastInfo: ['forecast', city.coord.lat, city.coord.lon] } }]"
        routerLinkActive="card__wrapper--active"
   >

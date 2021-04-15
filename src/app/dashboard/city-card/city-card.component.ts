@@ -19,4 +19,8 @@ export class CityCardComponent implements OnInit {
   ngOnInit(): void {
     this.cityInfo$ = this.weatherService.getWeather(this.cityName);
   }
+
+  public get backgroundUrl(): string {
+    return `url(/assets/images/cities/${this.cityName}.jpeg)`;
+  }
 }
