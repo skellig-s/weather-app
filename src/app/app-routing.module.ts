@@ -10,6 +10,10 @@ const routes: Routes = [
     path: 'forecast',
     outlet: 'forecastInfo',
     loadChildren: () => import('./forecast/forecast.module').then(m => m.ForecastModule)
+  },
+  {
+    path: '**',
+    redirectTo: ''
   }
 ];
 
