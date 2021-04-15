@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CitiesService } from '../../core/services/cities.service';
 
 @Component({
@@ -11,9 +10,7 @@ import { CitiesService } from '../../core/services/cities.service';
 export class CityListComponent implements OnInit {
   public cities: string[] = [];
 
-  constructor(private router: Router,
-              private citiesService: CitiesService
-  ) { }
+  constructor(private citiesService: CitiesService) { }
 
   ngOnInit(): void {
     this.cities = this.citiesService.getCities();

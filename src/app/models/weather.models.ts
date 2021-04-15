@@ -1,11 +1,13 @@
 export interface OneCallResponse {
+  lat: number;
+  lon: number;
   hourly: IForecast[];
 }
 
 export interface IForecast {
   dt: number;
   temp: number;
-  weather: IWeather;
+  weather: IWeather[];
   wind_speed: number;
 }
 
