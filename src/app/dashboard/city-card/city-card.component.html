@@ -6,10 +6,12 @@
   >
     <div class="card__description">
       <wa-weather-conditions
-        [info]="cityName"
-        [weatherIcon]="city.weather[0].icon"
-        [temperature]="city.main.temp"
-        [wind]="city.wind.speed"
+        [conditions]="{
+          info: cityName,
+          weatherIcon: city.weather[0].icon,
+          temperature: city.main.temp,
+          wind: city.wind.speed
+        }"
       ></wa-weather-conditions>
     </div>
   </div>

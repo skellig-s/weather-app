@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { ConditionsModel } from '../../models/conditions.model';
 
 @Component({
   selector: 'wa-weather-conditions',
@@ -7,12 +8,9 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class WeatherConditionsComponent {
-  @Input() info: string;
-  @Input() weatherIcon: string;
-  @Input() temperature: number;
-  @Input() wind: number;
+  @Input() conditions: ConditionsModel = {};
 
   public get weatherIconAddress(): string {
-    return `http://openweathermap.org/img/wn/${this.weatherIcon}.png`;
+    return `https://openweathermap.org/img/wn/${this.conditions.weatherIcon}.png`;
   }
 }
