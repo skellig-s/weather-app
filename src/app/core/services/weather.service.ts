@@ -1,13 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
-import { Observable } from 'rxjs';
+import { Observable, timer } from 'rxjs';
 import { ICityWeather, OneCallResponse } from '../../models/weather.models';
+import { switchMap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class WeatherService {
+  private readonly REFRESH_INTERVAL = 5 * 60 * 1000; // 5 min
 
   constructor(private httpClient: HttpClient) {
   }
@@ -17,7 +19,9 @@ export class WeatherService {
       .set('q', city)
       .set('units', 'metric')
       .set('appid', environment.apiKey);
-    return this.httpClient.get<ICityWeather>(`${environment.apiHost}/data/2.5/weather`, { params });
+    return timer(0, this.REFRESH_INTERVAL).pipe(
+      switchMap(_ => this.httpClient.get<ICityWeather>(`${environment.apiHost}/data/2.5/weather`, { params }))
+    );
   }
 
   public getForecast(lat: number, lon: number): Observable<OneCallResponse> {
