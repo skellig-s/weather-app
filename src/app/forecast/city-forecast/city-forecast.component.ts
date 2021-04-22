@@ -1,8 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { IForecast } from '../../models/weather.models';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { interval, merge, Observable } from 'rxjs';
+import { map, switchMap } from 'rxjs/operators';
+import { WeatherService } from '../../core/services/weather.service';
 
 @Component({
   selector: 'wa-city-forecast',
@@ -11,14 +12,26 @@ import { map } from 'rxjs/operators';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CityForecastComponent implements OnInit {
+  static readonly FORECAST_REFRESH_INTERVAL = 30 * 60 * 1000;
   public hourlyForecast$: Observable<IForecast[]>;
 
-  constructor(private activeRoute: ActivatedRoute) {
+  constructor(private activeRoute: ActivatedRoute,
+              private weatherService: WeatherService) {
   }
 
   ngOnInit(): void {
-    this.hourlyForecast$ = this.activeRoute.data.pipe(
-      map(({ forecast }) => forecast.hourly)
+    this.hourlyForecast$ = merge(
+      this.activeRoute.data.pipe(
+        map(({ forecast }) => forecast)
+      ),
+      interval(CityForecastComponent.FORECAST_REFRESH_INTERVAL).pipe(
+        switchMap(() => this.weatherService.getForecast(
+          this.activeRoute.snapshot.params.lat,
+          this.activeRoute.snapshot.params.lon
+        )),
+      )
+    ).pipe(
+      map((forecast) => forecast.hourly)
     );
   }
 
